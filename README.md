@@ -1,2 +1,1 @@
-# hook-admin
-Hook 管理
+# GoFrame Template For SingleRepo
