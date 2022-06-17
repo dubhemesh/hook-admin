@@ -2,6 +2,7 @@ package controller
 
 import (
 	"context"
+	"github.com/gogf/gf/v2/frame/g"
 
 	"hook-admins/api/v1"
 )
@@ -13,6 +14,7 @@ var (
 type cUser struct{}
 
 func (c *cUser) UserLogin(ctx context.Context, req *v1.UserLoginReq) (res *v1.UserLoginRes, err error) {
+	g.Log().Cat("user").Info(ctx, req)
 	return
 }
 
@@ -24,10 +26,22 @@ func (c *cUser) UserRegister(ctx context.Context, req *v1.UserRegisterReq) (res 
 	return
 }
 
+func (c *cUser) UserIsLogin(ctx context.Context, req *v1.UserIsLoginReq) (res *v1.UserIsLoginRes, err error) {
+	return
+}
+
+func (c *cUser) UserIsAdmin(ctx context.Context, req *v1.UserIsAdminReq) (res *v1.UserIsAdminRes, err error) {
+	return
+}
+
 func (c *cUser) UpdateUser(ctx context.Context, req *v1.UpdateUserReq) (res *v1.UpdateUserRes, err error) {
 	return
 }
 
 func (c *cUser) GetUser(ctx context.Context, req *v1.GetUserReq) (res *v1.GetUserRes, err error) {
+	return
+}
+
+func (c *cUser) GetUserList(ctx context.Context, req *v1.GetUserListReq) (res *v1.GetUserListRes, err error) {
 	return
 }

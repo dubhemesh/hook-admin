@@ -26,8 +26,25 @@ type UserRegisterReq struct {
 
 type UserRegisterRes struct{}
 
+type UserIsLoginReq struct {
+	g.Meta `path:"/user/is_login" tags:"用户" method:"post" sm:"判断用户是否登录"`
+}
+
+type UserIsLoginRes struct {
+	IsLogin bool `json:"is_login"`
+}
+
+type UserIsAdminReq struct {
+	g.Meta `path:"/user/is_admin" tags:"用户" method:"post" sm:"用户是否是管理员"`
+}
+
+type UserIsAdminRes struct {
+	IsAdmin bool `json:"is_admin"`
+}
+
 type UpdateUserReq struct {
 	g.Meta          `path:"/user/update" tags:"用户" method:"post" sm:"更新用户信息"`
+	UserId          int    `json:"user_id" v:"required" dc:"用户ID"`
 	NickName        string `json:"nick_name" v:"required" dc:"昵称"`
 	Password        string `json:"password" v:"required" dc:"密码"`
 	ConfirmPassword string `json:"confirm_password" v:"required|same:Password" dc:"确认密码"`
@@ -36,9 +53,20 @@ type UpdateUserReq struct {
 type UpdateUserRes struct{}
 
 type GetUserReq struct {
-	g.Meta `path:"/user" tags:"用户" method:"post" sm:"获取用户信息"`
-	Token  string `json:"token" v:"required" dc:"用户token" in:"header"`
-	UserId int    `json:"user_id" v:"required" dc:"用户ID"`
+	g.Meta `path:"/user" tags:"用户" method:"get" sm:"获取用户信息"`
+	UserId int `json:"user_id" v:"required" dc:"用户ID"`
 }
 
-type GetUserRes struct{}
+type GetUserRes struct {
+	Id       int    `json:"id" dc:"用户ID"`
+	Passport string `json:"passport" dc:"用户名"`
+	NickName string `json:"nick_name" dc:"昵称"`
+}
+
+type GetUserListReq struct {
+	g.Meta `path:"/user/list" tags:"用户" method:"get" sm:"获取用户列表" dc:"管理员权限接口"`
+}
+
+type GetUserListRes struct {
+	List []*GetUserRes `json:"list" dc:"用户列表"`
+}

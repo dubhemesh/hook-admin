@@ -1,11 +1,50 @@
+# 服务配置
 server:
-  address:     ":8000"
-  openapiPath: "/api.json"
-  swaggerPath: "/swagger"
+  # 基本配置
+  address:        ":8080"
+  dumpRouterMap:  true
+  serverAgent:   "hook-admin"
 
+  # 接口文档
+  openapiPath:  "/api.json"
+  swaggerPath:  "/swagger"
+
+  # Cookie配置
+  cookieMaxAge:  "30d"
+  cookiePath:    "/"
+  cookieDomain:  ""
+
+  # Sessions配置
+  sessionMaxAge:        "1h"
+  sessionIdName:        "session_id"
+  sessionCookieOutput:  true
+  sessionPath:          "/tmp/sessions"
+
+  # 日志扩展配置(参数日志组件配置)
+  logger:
+    path: "runtime/server"
+    file: "debug-{Y-m-d}.log"
+    level: "all"
+    stdout: true
+
+  # 日志基本配置
+#  logPath:           "runtime/server"
+#  logStdout:         false
+#  logLevel:          "all"
+#  errorStack:        true
+#  errorLogEnabled:   true
+#  errorLogPattern:   "error-{Ymd}.log"
+#  accessLogEnabled:  true
+#  accessLogPattern:  "access-{Ymd}.log"
+
+# 日志
 logger:
-  level : "all"
-  stdout: true
+  path:   "runtime/business"
+  file:   "{Y-m-d}.log"
+  level:  "all"
 
-
-
+# 数据库配置
+database:
+  default:
+    type:  "mysql"
+    link:  "root:12345678@tcp(127.0.0.1:3306)/test"
